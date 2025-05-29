@@ -4,18 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="usuario.css">
 </head>
 
 <body>
-    <!-- Conter:
-       Formulário com
-       ID= nome, cpf, data de nascimento, sexo
-       Local= endereço, bairro, cidade, cep
-       Contato= email, telefone
-       Login= user, senha, confirsenha -->
 
+    <div class="cadastro-container">
+
+        <h2>Cadastro</h2>
+
+        <form action="cadastro.php" method="post">
+
+            <!-- IDENTIFICAÇÃO -->
+
+            <fieldset>
+                <legend>IDENTIFICAÇÃO</legend>
+                <input type="text" name="nome" placeholder="Nome Completo" required>
+                <input type="text" name="cpf" placeholder="CPF" required>
+                <input type="date" name="data_de_nascimento" required>
+                <select name="sexo" required>
+                    <option value="">Sexo</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outo</option>
+                </select>
+            </fieldset>
+
+            <!-- LOCAL -->
+
+            <fieldset>
+                <legend>LOCAL</legend>
+                <input type="text" name="endereco" placeholder="Endereço" required>
+                <input type="text" name="bairro" placeholder="Bairro" required>
+                <input type="text" name="cidade" placeholder="Cidade" required>
+                <input type="text" name="cep" placeholder="Cep" required>
+            </fieldset>
+
+            <!-- CONTATO -->
+
+            <fieldset>
+                <legend>Contato</legend>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="telefone" placeholder="Telefone" required>     
+            </fieldset>
+
+            <!-- LOGIN -->
+
+        </form>
+    </div>
 
 </body>
 
