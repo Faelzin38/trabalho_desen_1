@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="usuario.css">
+    <link rel="stylesheet" href="js.css">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 
         <h2>Cadastro</h2>
 
-        <form action="cadastro.php" method="post">
+        <form  id="form-cadastro">
 
             <!-- IDENTIFICAÇÃO -->
 
@@ -46,12 +47,51 @@
             <fieldset>
                 <legend>Contato</legend>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="telefone" placeholder="Telefone" required>     
+                <input type="tel" name="telefone" placeholder="Telefone" required>
             </fieldset>
 
             <!-- LOGIN -->
 
+            <fieldset>
+                <legend>Login</legend>
+                <input type="text" name="usuario" placeholder="Usuário" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <input type="password" name="confirmar_senha" placeholder="Confirmar Senha" required>
+            </fieldset>
+
+            <button type="submit">Cadastrar</button>
+
         </form>
+        <!-- MENSAGEM DE SUCESSO -->
+        <div id="sucesso-popup" class="popup">
+
+            <div class="popup-content">
+
+                <h3>Usuário cadastrado com sucesso!</h3>
+                <button onclick="fecharPopup()">Ok</button>
+
+            </div>
+
+        </div>
+
+        <script>
+
+            const form = document.getElementById('form-cadastro');
+            const popup = document.getElementById('sucesso-popup');
+
+            form.addEventListener('submit', function (e) {
+
+                e.preventDefault(); //impede o envio real
+                popup.style.display = 'flex';
+                form.reset(); //limpa  o formulário 
+            });
+
+            function fecharPopup() {
+                popup.style.display = 'none';
+            }
+
+        </script>
+
     </div>
 
 </body>

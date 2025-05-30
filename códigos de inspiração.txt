@@ -1,0 +1,30 @@
+<!-- ... parte inicial do HTML igual -->
+
+<form id="form-cadastro">
+    <!-- ... todos os seus fieldsets aqui -->
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<!-- MENSAGEM DE SUCESSO -->
+<div id="sucesso-popup" class="popup">
+    <div class="popup-content">
+        <h3>Usuário cadastrado com sucesso!</h3>
+        <button onclick="fecharPopup()">OK</button>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('form-cadastro');
+    const popup = document.getElementById('sucesso-popup');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // impede o envio real
+        popup.style.display = 'flex';
+        form.reset(); // limpa o formulário se quiser
+    });
+
+    function fecharPopup() {
+        popup.style.display = 'none';
+    }
+</script>
