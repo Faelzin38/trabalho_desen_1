@@ -15,7 +15,7 @@
 
         <h2>Cadastro</h2>
 
-        <form  id="form-cadastro">
+        <form id="form-cadastro">
 
             <!-- IDENTIFICAÇÃO -->
 
@@ -61,6 +61,8 @@
 
             <button type="submit">Cadastrar</button>
 
+            <a href="index.html" class="voltar">Voltar</a>
+
         </form>
         <!-- MENSAGEM DE SUCESSO -->
         <div id="sucesso-popup" class="popup">
@@ -80,20 +82,20 @@
             const popup = document.getElementById('sucesso-popup');
 
             form.addEventListener('submit', function (e) {
-
-                e.preventDefault(); //impede o envio real
-                popup.style.display = 'flex';
-                form.reset(); //limpa  o formulário 
+                e.preventDefault(); // impede o envio real do formulário
+                popup.style.display = 'flex'; // exibe o popup
+                form.reset(); // limpa o formulário
             });
 
             function fecharPopup() {
-                popup.style.display = 'none';
+                popup.style.display = 'none'; // esconde o popup
+                // --- Adicione a linha abaixo para redirecionar ---
+                window.location.href = 'index.html'; // Redireciona para a tela de login
             }
-
         </script>
 
     </div>
 
 </body>
 
-</html> 
+</html>

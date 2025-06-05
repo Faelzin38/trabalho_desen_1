@@ -1,6 +1,6 @@
 body{
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #b2c2d3; /* Um cinza claro suave para o fundo */
+    background-color: #f0f2f5; /* Um cinza claro suave para o fundo */
     color: #333;
     margin: 0;
     padding: 20px;
@@ -89,7 +89,7 @@ fieldset select:last-of-type {
 
 /* --- Estilo do Botão de Cadastrar --- */
 button[type="submit"] {
-    background-color: #28a745; /* Verde para o botão de cadastrar */
+    background-color: #28a745; /* Verde para o botão de cadastrar #28a745 */
     color: white;
     padding: 15px 25px;
     border: none;
@@ -172,4 +172,10 @@ button[type="submit"]:hover {
         font-size: 0.95em;
         margin-top: 20px;
     }
+}
+
+.voltar{
+    color: #333;
+    text-decoration: none;
+    font-weight: 350;
 }
