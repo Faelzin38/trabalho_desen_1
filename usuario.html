@@ -15,9 +15,7 @@
 
         <h2>Cadastro</h2>
 
-        <form id="form-cadastro">
-
-            <!-- IDENTIFICAÇÃO -->
+        <form id="form-cadastro" action="processa_cadastro.php" method="POST">
 
             <fieldset>
                 <legend>IDENTIFICAÇÃO</legend>
@@ -28,11 +26,9 @@
                     <option value="">Sexo</option>
                     <option value="masculino">Masculino</option>
                     <option value="feminino">Feminino</option>
-                    <option value="outro">Outo</option>
+                    <option value="outro">Outro</option>
                 </select>
             </fieldset>
-
-            <!-- LOCAL -->
 
             <fieldset>
                 <legend>LOCAL</legend>
@@ -42,15 +38,11 @@
                 <input type="text" name="cep" placeholder="Cep" required>
             </fieldset>
 
-            <!-- CONTATO -->
-
             <fieldset>
                 <legend>Contato</legend>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="tel" name="telefone" placeholder="Telefone" required>
             </fieldset>
-
-            <!-- LOGIN -->
 
             <fieldset>
                 <legend>Login</legend>
@@ -64,7 +56,6 @@
             <a href="index.html" class="voltar">Voltar</a>
 
         </form>
-        <!-- MENSAGEM DE SUCESSO -->
         <div id="sucesso-popup" class="popup">
 
             <div class="popup-content">
@@ -77,21 +68,36 @@
         </div>
 
         <script>
+            // ******************************************************************
+            // INÍCIO DA ALTERAÇÃO NO SCRIPT JAVASCRIPT
+            // Comentamos (ou removemos, dependendo da sua preferência) o e.preventDefault()
+            // para permitir que o formulário seja de fato enviado ao PHP.
+            // A exibição do popup e a limpeza do formulário agora serão responsabilidade do PHP
+            // ou de uma lógica posterior (ex: PHP redireciona para esta página com um parâmetro).
+            // ******************************************************************
 
             const form = document.getElementById('form-cadastro');
             const popup = document.getElementById('sucesso-popup');
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault(); // impede o envio real do formulário
-                popup.style.display = 'flex'; // exibe o popup
-                form.reset(); // limpa o formulário
-            });
+            // Comentamos a linha abaixo para permitir que o formulário seja enviado.
+            // Se você quiser que o popup apareça depois que o PHP processar,
+            // o PHP precisará redirecionar para esta página com um parâmetro (ex: usuario.html?cadastro=sucesso),
+            // e então você adicionaria um JS aqui para verificar esse parâmetro e exibir o popup.
 
+            // form.addEventListener('submit', function (e) {
+            //     e.preventDefault(); // Esta linha impedia o envio. Foi comentada para o PHP processar.
+            //     popup.style.display = 'flex'; // Exibir o popup (agora deve ser controlado pelo PHP/redirecionamento)
+            //     form.reset(); // Limpar o formulário (agora o PHP ou o redirecionamento fará isso)
+            // });
+
+            // Mantemos a função fecharPopup, que será útil se o popup for ativado por outra lógica.
             function fecharPopup() {
                 popup.style.display = 'none'; // esconde o popup
-                // --- Adicione a linha abaixo para redirecionar ---
                 window.location.href = 'index.html'; // Redireciona para a tela de login
             }
+            // ******************************************************************
+            // FIM DA ALTERAÇÃO NO SCRIPT JAVASCRIPT
+            // ******************************************************************
         </script>
 
     </div>
