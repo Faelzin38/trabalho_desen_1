@@ -15,19 +15,21 @@
 
         <h2>Cadastro</h2>
 
-        <form id="form-cadastro" action="processa_cadastro.php" method="POST">
+        <form id="form-cadastro" action="register.php" method="POST">
 
             <fieldset>
                 <legend>IDENTIFICAÇÃO</legend>
                 <input type="text" name="nome" placeholder="Nome Completo" required>
                 <input type="text" name="cpf" placeholder="CPF" required>
-                <input type="date" name="data_de_nascimento" required>
-                <select name="sexo" required>
-                    <option value="">Sexo</option>
+                <label for="data_de_nascimento">Data de Nascimento</label>
+                <input type="date" id="data_de_nascimento" name="data_de_nascimento" required placeholder="Data de Nascimento" title="Informe sua data de nascimento">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="">Selecione</option>
                     <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
+                    <option value="feminion>
                     <option value="outro">Outro</option>
-                </select>
+                </>
             </fieldset>
 
             <fieldset>
@@ -51,7 +53,7 @@
                 <input type="password" name="confirmar_senha" placeholder="Confirmar Senha" required>
             </fieldset>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit" name="cadastrar">Cadastrar</button>
 
             <a href="index.html" class="voltar">Voltar</a>
 
