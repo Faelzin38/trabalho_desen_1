@@ -3,20 +3,21 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "biblioteca";  // nome do banco conforme seu print
+$dbname = "biblioteca";
 
 // Criar conexão
 $conn = new mysqli($host, $user, $password, $dbname);
 
 // Verificar conexão
 if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    header("Location: usuario.html?status=erro&message=" . urlencode("Falha na conexão com o banco de dados."));
+    exit;
 }
 
 if (isset($_POST['cadastrar'])) {
     $nome = $_POST['nome'];
     $cpf = $_POST['cpf'];
-    $data_nascimento = $_POST['data_de_nascimento'];
+    $data_nascimento = $_POST['data_de_nascimento']; // Esta variável está correta, é do HTML
     $sexo = $_POST['sexo'];
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
@@ -29,28 +30,30 @@ if (isset($_POST['cadastrar'])) {
     $confirmar_senha = $_POST['confirmar_senha'];
 
     if ($senha !== $confirmar_senha) {
-        echo "As senhas não coincidem. Tente novamente.";
+        header("Location: usuario.html?status=erro&message=" . urlencode("As senhas não coincidem. Tente novamente."));
         exit;
     }
 
-    // Criptografar a senha
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Preparar a query
-    $stmt = $conn->prepare("INSERT INTO usuarios (nome, cpf, data_nascimento, sexo, endereco, bairro, cidade, cep, email, telefone, usuario, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Preparar a query - AQUI ESTÁ A MUDANÇA
+    $stmt = $conn->prepare("INSERT INTO usuarios (nome, cpf, data_de_nascimento, sexo, endereco, bairro, cidade, cep, email, telefone, usuario, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    //                             ^^^ Adicionei "_de_" aqui para corresponder ao seu banco de dados
 
-    // Assumindo que a estrutura da tabela está correta com todas essas colunas
     $stmt->bind_param("ssssssssssss", $nome, $cpf, $data_nascimento, $sexo, $endereco, $bairro, $cidade, $cep, $email, $telefone, $usuario, $senha_hash);
 
     if ($stmt->execute()) {
-        echo "Usuário cadastrado com sucesso!";
+        header("Location: usuario.html?status=sucesso");
+        exit;
     } else {
-        echo "Erro ao cadastrar usuário: " . $stmt->error;
+        header("Location: usuario.html?status=erro&message=" . urlencode("Erro ao cadastrar usuário: " . $stmt->error));
+        exit;
     }
 
     $stmt->close();
 } else {
-    echo "Formulário não enviado corretamente.";
+    header("Location: usuario.html?status=erro&message=" . urlencode("Formulário não enviado corretamente."));
+    exit;
 }
 
 $conn->close();

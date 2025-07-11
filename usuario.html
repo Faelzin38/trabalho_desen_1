@@ -1,109 +1,228 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cadastro</title>
+
+       
     <link rel="stylesheet" href="usuario.css">
+
+       
     <link rel="stylesheet" href="js.css">
+
 </head>
+
+
 
 <body>
 
-    <div class="cadastro-container">
 
-        <h2>Cadastro</h2>
 
-        <form id="form-cadastro" action="config.php" method="POST">
+        <div class="cadastro-container">
 
-            <fieldset>
-                <legend>IDENTIFICAÇÃO</legend>
-                <input type="text" name="nome" placeholder="Nome Completo" required>
-                <input type="text" name="cpf" placeholder="CPF" required>
-                <label for="data_de_nascimento">Data de Nascimento</label>
-                <input type="date" id="data_de_nascimento" name="data_de_nascimento" required placeholder="Data de Nascimento" title="Informe sua data de nascimento">
-                <label for="sexo">Sexo</label>
-                <select id="sexo" name="sexo" required>
-                    <option value="">Selecione</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                    <option value="outro">Outro</option>
-                </select/>
-            </fieldset>
-                
-            <fieldset>
-                <legend>LOCAL</legend>
-                <input type="text" name="endereco" placeholder="Endereço" required>
-                <input type="text" name="bairro" placeholder="Bairro" required>
-                <input type="text" name="cidade" placeholder="Cidade" required>
-                <input type="text" name="cep" placeholder="Cep" required>
-            </fieldset>
 
-            <fieldset>
-                <legend>Contato</legend>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="telefone" placeholder="Telefone" required>
-            </fieldset>
 
-            <fieldset>
-                <legend>Login</legend>
-                <input type="text" name="usuario" placeholder="Usuário" required>
-                <input type="password" name="senha" placeholder="Senha" required>
-                <input type="password" name="confirmar_senha" placeholder="Confirmar Senha" required>
-            </fieldset>
+                <h2>Cadastro</h2>
 
-            <button type="submit" name="cadastrar">Cadastrar</button>
 
-            <a href="index.html" class="voltar">Voltar</a>
 
-        </form>
-        <div id="sucesso-popup" class="popup">
+                <form id="form-cadastro" action="config.php" method="POST">
 
-            <div class="popup-content">
 
-                <h3>Usuário cadastrado com sucesso!</h3>
-                <button onclick="fecharPopup()">Ok</button>
 
-            </div>
+                        <fieldset>
 
-        </div>
+                                <legend>IDENTIFICAÇÃO</legend>
 
+                                <input type="text" name="nome" placeholder="Nome Completo" required>
+
+                                <input type="text" name="cpf" placeholder="CPF" required>
+
+                                <label for="data_de_nascimento">Data de Nascimento</label>
+
+                                <input type="date" id="data_de_nascimento" name="data_de_nascimento" required
+                    placeholder="Data de Nascimento" title="Informe sua data de nascimento">
+
+                                <label for="sexo">Sexo</label>
+
+                                <select id="sexo" name="sexo" required>
+
+                                        <option value="">Selecione</option>
+
+                                        <option value="masculino">Masculino</option>
+
+                                        <option value="feminino">Feminino</option>
+
+                                        <option value="outro">Outro</option>
+
+                                    </select />
+
+                            </fieldset>
+
+                           
+
+                        <fieldset>
+
+                                <legend>LOCAL</legend>
+
+                                <input type="text" name="endereco" placeholder="Endereço" required>
+
+                                <input type="text" name="bairro" placeholder="Bairro" required>
+
+                                <input type="text" name="cidade" placeholder="Cidade" required>
+
+                                <input type="text" name="cep" placeholder="Cep" required>
+
+                            </fieldset>
+
+
+
+                        <fieldset>
+
+                                <legend>Contato</legend>
+
+                                <input type="email" name="email" placeholder="Email" required>
+
+                                <input type="tel" name="telefone" placeholder="Telefone" required>
+
+                            </fieldset>
+
+
+
+                        <fieldset>
+
+                                <legend>Login</legend>
+
+                                <input type="text" name="usuario" placeholder="Usuário" required>
+
+                                <input type="password" name="senha" placeholder="Senha" required>
+
+                                <input type="password" name="confirmar_senha" placeholder="Confirmar Senha" required>
+
+                            </fieldset>
+
+
+
+                        <button type="submit" name="cadastrar">Cadastrar</button>
+
+
+
+                        <a href="index.html" class="voltar">Voltar</a>
+
+
+
+                    </form>
+
+                <div id="sucesso-popup" class="popup">
+
+
+
+                        <div class="popup-content">
+
+
+
+                                <h3>Usuário cadastrado com sucesso!</h3>
+
+                                <button onclick="fecharPopup()">Ok</button>
+
+
+
+                            </div>
+
+
+
+                    </div>
+
+
+
+               
         <script>
-            // ******************************************************************
-            // INÍCIO DA ALTERAÇÃO NO SCRIPT JAVASCRIPT
-            // Comentamos (ou removemos, dependendo da sua preferência) o e.preventDefault()
-            // para permitir que o formulário seja de fato enviado ao PHP.
-            // A exibição do popup e a limpeza do formulário agora serão responsabilidade do PHP
-            // ou de uma lógica posterior (ex: PHP redireciona para esta página com um parâmetro).
-            // ******************************************************************
 
             const form = document.getElementById('form-cadastro');
+
             const popup = document.getElementById('sucesso-popup');
 
-            // Comentamos a linha abaixo para permitir que o formulário seja enviado.
-            // Se você quiser que o popup apareça depois que o PHP processar,
-            // o PHP precisará redirecionar para esta página com um parâmetro (ex: usuario.html?cadastro=sucesso),
-            // e então você adicionaria um JS aqui para verificar esse parâmetro e exibir o popup.
+            const popupMessage = popup.querySelector('h3'); // Adicionado para exibir a mensagem
 
-            // form.addEventListener('submit', function (e) {
-            //     e.preventDefault(); // Esta linha impedia o envio. Foi comentada para o PHP processar.
-            //     popup.style.display = 'flex'; // Exibir o popup (agora deve ser controlado pelo PHP/redirecionamento)
-            //     form.reset(); // Limpar o formulário (agora o PHP ou o redirecionamento fará isso)
-            // });
 
-            // Mantemos a função fecharPopup, que será útil se o popup for ativado por outra lógica.
+
             function fecharPopup() {
-                popup.style.display = 'none'; // esconde o popup
-                window.location.href = 'index.html'; // Redireciona para a tela de login
+
+                popup.style.display = 'none';
+
+                window.location.href = 'index.html';
+
             }
-            // ******************************************************************
-            // FIM DA ALTERAÇÃO NO SCRIPT JAVASCRIPT
-            // ******************************************************************
+
+
+
+            // Função para exibir o popup com uma mensagem
+
+            function showAlertPopup(message) {
+
+                popupMessage.textContent = message; // Define a mensagem no popup
+
+                popup.style.display = 'flex';
+
+            }
+
+
+
+            // Verifica os parâmetros da URL ao carregar a página
+
+            window.onload = function () {
+
+                const urlParams = new URLSearchParams(window.location.search);
+
+                const status = urlParams.get('status');
+
+                const message = urlParams.get('message');
+
+
+
+                if (status === 'sucesso') {
+
+                    showAlertPopup("Usuário cadastrado com sucesso!");
+
+                    form.reset(); // Limpa o formulário após o sucesso
+
+                    // Não redireciona automaticamente aqui, o usuário clica em Ok
+
+                } else if (status === 'erro') {
+
+                    showAlertPopup(message || "Ocorreu um erro. Tente novamente.");
+
+                    // Não limpa o formulário em caso de erro, para o usuário ver o que digitou
+
+                }
+
+                // Limpa os parâmetros da URL para que o popup não apareça novamente se o usuário recarregar a página
+
+                if (status) {
+
+                    window.history.replaceState(null, null, window.location.pathname);
+
+                }
+
+            };
+
         </script>
 
+
+
+           
     </div>
 
+
+
 </body>
+
+
 
 </html>
